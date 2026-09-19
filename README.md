@@ -5,3 +5,10 @@ this is my repository for storing my lau(s) and laum(s)!
 
 # Wanna try http.get on this repository?
 Go to LAU -> Example Code -> example1.lau 
+
+# Support the game!
+[Plant with Coding](https://www.roblox.com/games/122761763017872/Plant-with-Coding)
+
+[Plant with Coding Wiki](https://docs.pwc.wiki/)
+
+[Plant with Coding Wiki: HTTP Module (the one I use in example1.lau)](https://docs.pwc.wiki/reference/http/)
