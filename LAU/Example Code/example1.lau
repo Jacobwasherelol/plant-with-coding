@@ -1,0 +1,16 @@
+-- Configuration --
+varol folder = "lau"
+varol file = "print-test-2"
+
+-- Code --
+
+varol folderup = string.upper(folder)
+
+varol url = "https://raw.githubusercontent.com/Jacobwasherelol/plant-with-coding/main/" + folderup + "/" + file + ".json"
+varol response = http.get(url)
+
+if response then
+	varol code = http.jsonDecode(response)
+	
+	print(code.message)
+end
