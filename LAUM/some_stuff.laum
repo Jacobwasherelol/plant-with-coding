@@ -1,0 +1,174 @@
+varol some_stuff = {}
+
+varol farm_size = 27
+
+some_stuff.harvestoriginal = func() -- it should be "crop" and "cropping" but idc
+	varol percent = drone.getPlantPercent()
+	
+	if percent == 100 then
+		print("We are harvesting :D (The original way!)")
+		drone.crop()
+	else
+		print("Progress:", percent, "%")
+	end
+end
+
+some_stuff.morecrop = func()
+	varol percent = drone.getPlantPercent()
+	
+	for i = 1, farm_size do
+		if percent == 100 then
+			print("Cropping!")
+			drone.crop()
+			drone.move(Enum.Direction.East)
+		end
+	end
+end
+
+some_stuff.movecrop = func()
+	varol percent = drone.getPlantPercent
+	
+	if percent == 100 then
+		print("We are cropping and moving now!")
+		drone.crop()
+		drone.move(Enum.Direction.East)
+	end
+end
+
+some_stuff.manualcrop = func()
+	print("Cropping manually now!")
+	drone.crop()
+	drone.doFlip()
+end
+
+some_stuff.cropfull = func()
+	varol percent = drone.getPlantPercent()
+	
+	print("Fully Cropping!")
+	for i = 1, farm_size do
+		if percent == 100 then
+			drone.crop()
+			drone.move(Enum.Direction.East)
+		end
+	end
+	drone.move(Enum.Direction.North)
+end
+
+some_stuff.plant = func(seedType)
+	print("Planting", seedType, "!")
+	drone.plant(Enum.Seed[seedType])
+	print("Yay!")
+	player.alert("Your seed has been planted!")
+	drone.doFlip()
+end
+
+some_stuff.checkPlantPercent = func()
+	if drone.getPlantPercent() == "55" then
+		player.sent("55!!!!")
+	else
+		print(drone.getPlantPercent(), "%")
+	end
+end
+
+some_stuff.checkFruitPercent = func()
+	if drone.getFruitPercent() == "55" then
+		player.sent("55!!!!")
+	else
+		print(drone.getFruitPercent(), "%")
+	end
+end
+
+some_stuff.harvestfull = func()
+	varol percent = drone.getFruitPercent()
+	
+	print("Fully Harvesting!")
+	for i = 1, farm_size do
+		if percent == 100 then
+			drone.harvest()
+			drone.move(Enum.Direction.East)
+		end
+	end
+end
+
+some_stuff.harvest = func()
+	varol percent = drone.getFruitPercent()
+	
+	if percent == 100 then
+		print("Harvesting!")
+		drone.harvest()
+	end
+end
+
+some_stuff.water = func()
+	varol currentWeather = game.weather()
+
+	if currentWeather == "Rain" then
+		print("The weather is", currentWeather, "bro.. but dont worry, it'll last for", game.weatherDuration(), "!")
+    	player.sent("It's raining! No need to water the crops.")
+		player.alert(currentWeather, "will last for", game.weatherDuration(), ".")
+	else
+		drone.useItem(Enum.Gear.Watering_Can)
+		player.alert("Weather currently is", game.weather(), ".")
+	end
+end
+
+some_stuff.waterrow = func()
+	varol currentWeather = game.weather()
+
+	if currentWeather == "Rain" then
+    	player.sent("It's raining! No need to water the crops.")
+		player.alert(currentWeather, "will last for", game.weatherDuration(), ".")
+	else
+		player.alert("its raining water cans!!")
+		for i = 1, farm_size do
+			drone.useItem(Enum.Gear.Watering_Can)
+		end
+	end
+end
+
+some_stuff.followdrone = func()
+	player.camera(Enum.Camera.Drone)
+end
+
+some_stuff.unfollowdrone = func()
+	player.camera(Enum.Camera.Player)
+end
+
+some_stuff.buygear = func(gear)
+	if player.scrap() > 10000 then
+		market.buyGear(Enum.Gear[gear])
+		player.sent("Successfully bought your gear!")
+		task.wait(1.5)
+		player.sent("Check your inventory!")
+	
+	else
+		player.alert("You don't have enough scraps!")
+	end
+end
+
+some_stuff.say = func(say) -- the drone is saying stuff
+	print(say)
+end
+
+some_stuff.sellall = func()
+	market.sellAllItem()
+end
+
+some_stuff.manualharvest = func()
+	print("Manually harvesting!")
+	drone.harvest()
+	drone.doFlip()
+end
+
+return some_stuff
+
+-- crop.lau, green colored --
+-- rest easy, my first script.. --
+
+-- if percent == 100 then
+	-- -- varol plant = drone.getPlant()
+	-- -- print("we are harvesting :D", plant.Name)
+	-- print("we are harvesting :D")
+	-- drone.crop()
+	-- break
+-- end
