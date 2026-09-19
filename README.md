@@ -1,2 +1,2 @@
 # plant-with-coding
-all my scripts are here
+this is my repository, i use http.get to get my scripts, wow!
