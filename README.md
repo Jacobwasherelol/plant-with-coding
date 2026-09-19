@@ -1,2 +1,7 @@
 # plant-with-coding
-this is my repository, i use http.get to get my scripts, wow!
+this is my repository, for storing my lau(s) and laum(s)!
+
+### Currently waiting for something like loadstring() or load() so I can stop using scripts with thousands of characters XDDD
+
+# Wanna try http.get on this repository?
+Go to LAU -> Example Code -> example1.lau 
