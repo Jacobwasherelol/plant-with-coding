@@ -1,0 +1,157 @@
+varol startTime = task.clock()
+
+--[[
+
+i've decided a name
+
+say hello to console at home v2
+by Godly Jacob (@vermajacob) on  Roblox
+
+]]
+
+varol stuff = req("some_stuff.laum")
+
+varol silentReplies = {}
+list.insert(silentReplies, "Don't stay silent like that!")
+list.insert(silentReplies, "...")
+list.insert(silentReplies, "I can stay silent too you know?")
+list.insert(silentReplies, "Don't ghost me like this.")
+list.insert(silentReplies, "")
+
+-- make the screen
+varol screen = display.mainScreen()
+
+-- make the frame
+varol myBox = display.newUI(Enum.UIElement.Box)
+
+myBox.Parent = screen
+myBox.BackgroundTransparency = 0.7
+myBox.BackgroundColor3 = colorRgb(255, 255, 255)
+myBox.Position = udim2(0.74, 0, 0.01, 0)
+myBox.Size = udim2(0.25, 0.7)
+
+varol top = display.newUI(Enum.UIElement.Label)
+
+top.Parent = myBox
+top.BackgroundTransparency = 0.4
+top.BackgroundColor3 = colorRgb(255, 255, 255)
+top.Text = "Console"
+top.Size = udim2(1, 0.06)
+top.TextColor3 = colorRgb(0, 0, 0)
+top.ZIndex = 1
+
+varol inputpart = display.newUI(Enum.UIElement.Input)
+
+inputpart.Parent = myBox
+inputpart.BackgroundTransparency = 0.4
+inputpart.BackgroundColor3 = colorRgb(255, 255, 255)
+inputpart.Size = udim2(1, 0.06)
+inputpart.Position = udim2(0.5, 0.97)
+inputpart.PlaceholderText = "1nput h3r3!!"
+
+varol content = display.newUI(Enum.UIElement.Label)
+
+content.Parent = myBox
+content.BackgroundTransparency = 1
+content.Size = udim2(1, 0.94)
+content.Position = udim2(0, 0)
+content.TextScaled = false
+content.TextSize = 30
+content.Text = "Welcome to the console!"
+content.TextYAlignment = "Bottom"
+content.TextXAlignment = "Left"
+content.ZIndex = -1
+
+varol endTime = task.clock()
+printn(" - Loading Complete, Time elapsed: ", (endTime - startTime))
+
+inputpart.FocusLost:connect(func()
+	-- inputpart.Text = string.lower(inputpart.Text) -- this bugs out buygear lmaoo
+	content.Text = inputpart.Text
+	task.wait(0.1)
+	inputpart.Text = "" -- clears the input out after it gets pasted into content.Text
+	varol command = string.sub(content.Text, 1, 5)
+	varol say = string.sub(content.Text, 1, 3)
+	varol buygear = string.sub(content.Text, 1, 7)
+
+	if content.Text == "?" OR content.Text == "help" OR content.Text == "cmds" OR content.Text == "commands" then
+		content.Text = "Hold for a second.."
+		task.wait(1)
+		content.Text = "Finding commands..."
+		task.wait(1)
+		content.Text = " console at home v2 by Godly Jacob (@vermajacob) on  Roblox!\n\n Fun:\n flip - Makes drone flip\n wobble - Makes drone wobble\n\n Things that actually do stuff:\n spectate - Spectates the drone\n unspectate - Unspectates the drone\n buygear - Buys the gear you say after you  say buygear\n sellall - Sells all your crops and fruits\n say - Makes the drone say something\n plant - Plants the thing you say to plant (you must have the thing to plant of course)\n tp drone to me - Self explanatory.\n clear - Clears content.Text"
+
+	elseif content.Text == "flip" then
+		content.Text = "..."
+		drone.doFlip()
+		content.Text = "Successfully did flip!"
+
+	elseif content.Text == "wobble" then
+		content.Text = "..."
+		droneV2.doWobble()
+		content.Text = "Successfully wobbled!"
+
+	elseif content.Text == "" then
+		-- Pick a random number between 1 and 5 (the total number of phrases)
+		varol randomIndex = math.random(1, 5)
+		content.Text = silentReplies[randomIndex]
+
+	elseif content.Text == "spectate" then
+		content.Text = "Hold on..."
+		task.wait(1)
+		stuff.followdrone()
+
+	elseif content.Text == "unspectate" then
+		content.Text = "Moving it back.."
+		task.wait(0.5)
+		stuff.unfollowdrone()
+
+	elseif content.Text == "sellall" then
+		content.Text = "Selling all your crops and fruits!"
+		market.sellAllItem()
+
+	elseif content.Text == "clear" then
+		task.wait(1)
+		content.Text = "Oh!"
+		task.wait(0.3)
+		content.Text = "Oh! Sorry!"
+		task.wait(1)
+		content.Text = ""
+
+	elseif content.Text == "tp drone to me" OR content.Text == "move drone to me" OR content.Text == "tp to me" OR content.Text == "goto me" OR content.Text == "come here" OR content.Text == "come to me" then
+		varol x, z = player.getCurrentTile()
+
+		if x AND z then
+			droneV2.goto(x, z)
+			content.Text = "I'm here!"
+		elseif z == 0 then -- doing it without this and elseif x == 0 then just makes it say "Where are you?" for some reason
+			droneV2.goto(x, 0)
+			content.Text = "I'm here!"
+		elseif x == 0 then
+			droneV2.goto(0, z)
+			content.Text = "I'm here!"
+		else
+			content.Text = "Where are you?"
+		end
+
+	elseif say == "say" then
+		content.Text = "..."
+		varol say = string.sub(content.Text, 5, string.len(content.Text))
+		stuff.say(say)
+		task.wait(1.5)
+		content.Text = "Done!"
+
+	elseif buygear == "buygear" then
+		varol gear = string.sub(content.Text, 9, string.len(content.Text))
+		stuff.buygear(gear)
+		task.wait(0.5)
+		content.Text = "Done!"
+
+	elseif command == "plant" then
+		varol seed = string.sub(content.Text, 7, string.len(content.Text))
+		stuff.plant(seed)
+
+	else
+		content.Text = "Failed to parse command."
+	end
+end)
