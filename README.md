@@ -4,7 +4,12 @@ this is my repository for storing my lau(s) and laum(s)!
 ### Currently waiting for something like loadstring() or load() so I can stop using scripts ingame and http.get my scripts from here instead!
 
 # Wanna try http.get on this repository?
-Go to LAU -> Example Code -> example1.lau 
+Go to LAU -> Example Code -> example1.lau
+
+### Current Examples:
+example1 (simple).lau
+
+example2.lau
 
 # Support the game!
 [Plant with Coding](https://www.roblox.com/games/122761763017872/Plant-with-Coding)
