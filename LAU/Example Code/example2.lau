@@ -1,0 +1,30 @@
+-- Configuration --
+varol folder = "tests" -- make it any capitalization, it'll string.upper() itself
+varol file = "print-test-3"
+varol extension = ".lau" -- must include the dot (.)
+
+-- Code --
+
+-- if block made by me
+if extension == null OR extension == "." then
+	extension = ".lau"
+	elseif extension ~= ".json" then
+		print("hey the thing you gave isn't a .json but i guess we ball?")
+end
+
+-- varol made by me --
+varol folderup = string.upper(folder)
+
+-- AI sadly --
+varol url = "https://raw.githubusercontent.com/Jacobwasherelol/plant-with-coding/main/" + folderup + "/" + file + extension
+varol response = http.get(url)
+
+-- another if block made by me --
+if extension == ".json" then
+	if response then
+		varol code = http.jsonDecode(response)
+		print(code.message)
+	end
+	elseif extension ~= ".json" then
+		print(response) -- (code) doesn't work since it's local and not global
+end
