@@ -7,7 +7,7 @@ this is my repository for storing my lau(s) and laum(s)!
 Go to LAU -> Example Code -> example1.lau
 
 ### Current Examples:
-example1 (simple).lau
+[example1 (simple).lau](https://github.com/Jacobwasherelol/plant-with-coding/blob/main/LAU/Example%20Code/example1%20(simple).lau)
 
 example2.lau
 
