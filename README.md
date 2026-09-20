@@ -9,7 +9,7 @@ Go to LAU -> Example Code -> example1.lau
 ### Current Examples:
 [example1 (simple).lau](https://github.com/Jacobwasherelol/plant-with-coding/blob/main/LAU/Example%20Code/example1%20(simple).lau)
 
-example2.lau
+[example2.lau](https://github.com/Jacobwasherelol/plant-with-coding/blob/main/LAU/Example%20Code/example2.lau)
 
 # Support the game!
 [Plant with Coding](https://www.roblox.com/games/122761763017872/Plant-with-Coding)
