@@ -1,1 +1,3 @@
 print("Hello, LAU!")
+
+-- this code is impossible to run (example like doing load()) since it's not in Plant with Coding yet
