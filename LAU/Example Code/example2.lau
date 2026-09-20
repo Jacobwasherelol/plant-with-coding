@@ -7,9 +7,9 @@ varol extension = ".lau" -- must include the dot (.)
 
 -- if block made by me
 if extension == null OR extension == "." then
-	extension = ".lau"
+	extension = ".lau" -- defaults to OUR coding language
 	elseif extension ~= ".json" then
-		print("hey the thing you gave isn't a .json but i guess we ball?")
+		print("hey the thing you gave isn't a .json but WE BALL BABYY")
 end
 
 -- varol made by me --
