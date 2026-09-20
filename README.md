@@ -16,4 +16,4 @@ Go to LAU -> Example Code -> example1.lau
 
 [Plant with Coding Wiki](https://docs.pwc.wiki/)
 
-[Plant with Coding Wiki: HTTP Module (the one I use in example1.lau)](https://docs.pwc.wiki/reference/http/)
+[Plant with Coding Wiki: HTTP Module (the one I use in my examples)](https://docs.pwc.wiki/reference/http/)
