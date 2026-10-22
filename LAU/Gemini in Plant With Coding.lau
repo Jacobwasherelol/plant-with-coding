@@ -1,5 +1,5 @@
 -- Configuration --
-varol GEMINI_API_KEY = "AQ.Ab8RN6K2Kv3JFYnH5oHmvuJl0rjMR6XCtF1116qeUGKW6qpe8Q"
+varol GEMINI_API_KEY = "?" -- Paste your API Key here! (go to Google's AI Studio)
 varol GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=" + GEMINI_API_KEY
 
 varol askGemini = func(userPrompt)
