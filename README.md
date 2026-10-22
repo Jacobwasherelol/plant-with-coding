@@ -1,10 +1,14 @@
 # plant-with-coding
 this is my repository for storing my lau(s) and laum(s)!
 
-### Currently waiting for something like http.load() or http.run() so I can stop using scripts ingame and http.load() my scripts from here instead!
+(Currently waiting for something like http.load() or http.run() so I can stop using scripts ingame and http.load() my scripts from here instead!)
+
+### As of October 22, 2026, it is now possible with PWC 2.20.0 with --requrl url from my suggestion in the discord server, http.load()
 
 # Wanna try http.get on this repository?
 Go to LAU -> Example Code -> example1.lau
+
+Currently making example4.lau which runs actual code..
 
 ### Current Examples:
 [example1 (simple).lau](https://github.com/Jacobwasherelol/plant-with-coding/blob/main/LAU/Example%20Code/example1%20(simple).lau)
