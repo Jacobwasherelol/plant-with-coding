@@ -1,0 +1,89 @@
+-- make the screen
+varol screen = display.mainScreen()
+
+-- make the frame
+varol myBox = display.newUI(Enum.UIElement.Box)
+
+myBox.Parent = screen
+myBox.BackgroundColor3 = colorRgb(0, 0, 0)
+myBox.Position = udim2(0.79, 0, 0.01, 0)
+myBox.Size = udim2(0.2, 0.2)
+
+varol loading = display.newUI(Enum.UIElement.Label)
+
+loading.Parent = myBox
+loading.BackgroundTransparency = 1
+loading.TextXAlignment = "Left"
+loading.Text = "Loading.."
+loading.TextColor3 = colorRgb(255, 255, 255)
+loading.Size = udim2(0.2, 0.1)
+loading.Position = udim2(0, 0, 0, 0)
+
+varol dronepanel = display.newUI(Enum.UIElement.Label)
+
+dronepanel.Parent = myBox
+dronepanel.BackgroundTransparency = 1
+dronepanel.Text = "Setting Up.."
+dronepanel.Size = udim2(1, 0.2)
+dronepanel.TextColor3 = colorRgb(255, 255, 255)
+dronepanel.Text = "Controller"
+
+varol forward = display.newUI(Enum.UIElement.Button)
+
+forward.Parent = myBox
+forward.BackgroundColor3 = colorRgb(255, 255, 255)
+forward.Position = udim2(0.5, 0, 0.3, 0)
+forward.Text = "W"
+forward.Size = udim2(0.1, 0, 0.17, 0)
+forward.Activated:connect(func()
+	drone.move(Enum.Direction.East)
+end)
+
+varol harveste = display.newUI(Enum.UIElement.Button)
+
+harveste.Parent = myBox
+harveste.BackgroundColor3 = colorRgb(255, 255, 255)
+harveste.Position = udim2(0.38, 0, 0.3, 0)
+harveste.Text = "Q Harv."
+harveste.Size = udim2(0.1, 0, 0.17, 0)
+harveste.Activated:connect(func()
+	if drone.canHarvest() == true then
+		drone.harvest()
+	else
+		print("It's not ready for harvest!")
+		player.alert("Not ready for harvest.")
+	end
+end)
+
+varol left = display.newUI(Enum.UIElement.Button)
+
+left.Parent = myBox
+left.BackgroundColor3 = colorRgb(255, 255, 255)
+left.Position = udim2(0.38, 0, 0.5, 0)
+left.Text = "A"
+left.Size = udim2(0.1, 0, 0.17, 0)
+left.Activated:connect(func()
+	drone.move(Enum.Direction.North)
+end)
+
+varol backward = display.newUI(Enum.UIElement.Button)
+
+backward.Parent = myBox
+backward.BackgroundColor3 = colorRgb(255, 255, 255)
+backward.Position = udim2(0.5, 0, 0.5, 0)
+backward.Text = "S"
+backward.Size = udim2(0.1, 0, 0.17, 0)
+backward.Activated:connect(func()
+	drone.move(Enum.Direction.West)
+end)
+
+varol right = display.newUI(Enum.UIElement.Button)
+
+right.Parent = myBox
+right.BackgroundColor3 = colorRgb(255, 255, 255)
+right.Position = udim2(0.62, 0, 0.5, 0)
+right.Text = "D"
+right.Size = udim2(0.1, 0, 0.17, 0)
+right.Activated:connect(func()
+	drone.move(Enum.Direction.South)
+end)

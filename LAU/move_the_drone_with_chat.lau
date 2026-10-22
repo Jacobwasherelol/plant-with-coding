@@ -1,0 +1,120 @@
+-- last changelog was on May 11, 2026... I gotta start using these changelogs..
+-- CHANGELOGS (June 7, 2026) LAU 5.3.0 --
+-- new "for fun" commands! (all droneV2 though, I just got it yesterday)
+-- Requires: player. task. and droneV2. (optional for the NEW fun commands)
+
+-- the drone chat script, made by @vermajacob (Godly Jacob) on Roblox
+-- please dont remove credits thanks!
+
+-- print("The Drone Chat Script is loading and will be ready in about 3-5 seconds.")
+player.sent("The Drone Chat Script is loading and will be ready in about 3-5 seconds. (or when this message disappears if your code speed is 5/5)")
+
+varol harvester = req("some_stuff.laum")
+-- print("Loaded the necessary module! (Usually means its ready)")
+player.alert("The script is ready to be used!")
+task.wait(0.5)
+player.sent("If you need to learn how to use all the chat commands, stop the script and check the inside of the script.")
+print("I'm ready!")
+
+player.chatted:connect(func(msg)
+	varol command = string.sub(msg, 1, 5)
+	varol buygear = string.sub(msg, 1, 7)
+	varol say = string.sub(msg, 1, 3)
+	
+	-- 1. some_stuff.laum Module usage (modules are better than writing 5 million lines of code in 1 script okay?)
+	if msg == "crop" then
+		harvester.manualcrop()
+
+	elseif msg == "fullcrop" then
+		harvester.cropfull()
+
+	elseif msg == "harvest" then
+		harvester.harvest()
+
+	elseif msg == "fullharvest" then
+		harvester.harvestfull()
+
+	elseif command == "plant" then
+		varol seed = string.sub(msg, 7, string.len(msg))
+		harvester.plant(seed)
+
+	elseif msg == "water" then
+		harvester.water()
+
+	elseif msg == "waterrow" then
+		harvester.waterrow()
+
+	elseif msg == "check" then
+		harvester.checkPlantPercent()
+
+	elseif msg == "checkfruit" then
+		harvester.checkFruitPercent()
+
+	elseif msg == "follow" then
+		harvester.followdrone()
+
+	elseif msg == "unfollow" then
+		harvester.unfollowdrone()
+
+	elseif buygear == "buygear" then
+		varol gear = string.sub(msg, 9, string.len(msg))
+		harvester.buygear(gear)
+
+	elseif msg == "sellall" then
+		harvester.sellall()
+
+	-- theres 13 commands bro holy
+
+		-- 2. Direction Movement (North, South, East, West) DISABLED (can be re-enabled by removing --, you should disable WASD movement if you re-enable it though.)
+	-- elseif msg == "movementhelp" then
+		-- print("To move the drone, say N or S or E or W (It uses directions and also only works in lowercase!).")
+	-- elseif msg == "n" then
+		-- drone.move(Enum.Direction.North)
+	-- elseif msg == "s" then
+		-- drone.move(Enum.Direction.South)
+	-- elseif msg == "e" then
+		-- drone.move(Enum.Direction.East)
+	-- elseif msg == "w" then
+		-- drone.move(Enum.Direction.West)
+	
+		-- 3. Quick Movement (WASD)
+	elseif msg == "movementwasdhelp" then
+		player.sent("To move the drone, say W or A or S or D.")
+	elseif msg == "a" then
+		drone.move(Enum.Direction.North)
+	elseif msg == "d" then
+		drone.move(Enum.Direction.South)
+	elseif msg == "w" then
+		drone.move(Enum.Direction.East)
+	elseif msg == "s" then
+		drone.move(Enum.Direction.West)
+
+	-- we are going east with these chat commands...
+
+		-- 4. for fun
+	elseif msg == "flip" then
+		print("FLIP!!!!")
+		drone.doFlip()
+		player.sent("such funny spin right?")
+
+	elseif msg == "big" then
+		print("i big :O")
+		droneV2.doBig()
+		player.sent("wow i be big :o")
+
+	elseif msg == "spin" then
+		print("SPIN!!!!")
+		droneV2.doSpin()
+		player.sent("im dizzy..")
+
+	elseif msg == "wobble" then
+		print("woah")
+		droneV2.doWobble()
+		player.sent("invincible reference")
+
+	elseif say == "say" then
+		varol say = string.sub(msg, 5, string.len(msg))
+		harvester.say(say)
+
+	end
+end)

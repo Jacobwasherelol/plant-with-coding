@@ -1,0 +1,48 @@
+varol harvester = req("some_stuff.laum")
+
+player.cameraMode(Enum.CameraMode.Classic)
+player.camera(Enum.Camera.Drone)
+print("I'm awake and ready to be controlled!")
+player.controlEnabled(false)
+playerV2.mainScreenEnable(false)
+player.alert("Before you stop controlling the drone, press P, I have no idea how to make it stop following the drone after the script is forced to end.")
+-- READ THE PLAYER ALERT (since it appears for like 2 seconds) --
+-- how the P works is that it does error()
+
+player.input:connect(func(input)
+	if input == Enum.KeyCode.W then
+		drone.move(Enum.Direction.East)
+	elseif input == Enum.KeyCode.D then
+		drone.move(Enum.Direction.South)
+	elseif input == Enum.KeyCode.S then
+		drone.move(Enum.Direction.West)
+	elseif input == Enum.KeyCode.A then
+		drone.move(Enum.Direction.North)
+	elseif input == Enum.KeyCode.Q then
+		-- harvester.manualcrop()
+		print("Manually harvesting!")
+		drone.harvest()
+		drone.doFlip()
+	elseif input == Enum.KeyCode.E then
+		-- harvester.manualharvest()
+		print("Cropping manually now!")
+		drone.crop()
+		drone.doFlip()
+	elseif input == Enum.KeyCode.Space then
+		drone.doFlip()
+	elseif input == Enum.KeyCode.R then
+		harvester.harvestfull()
+	elseif input == Enum.KeyCode.X then
+		harvester.sellall()
+	elseif input == Enum.KeyCode.C then
+		harvester.checkFruitPercent()
+	elseif input == Enum.KeyCode.V then
+		harvester.checkPlantPercent()
+	-- elseif input == Enum.KeyCode.P then
+		-- print("Stopping!")
+		-- player.cameraMode(Enum.CameraMode.Classic)
+		-- player.camera(Enum.Camera.Player)
+		-- player.controlEnabled(true)
+		-- error("rahhh") -- I have no idea why but the entire script crashes after this error, zero idea why it doesn't just "error" without an ACTUAL error. -- doesnt even work now
+	end
+end)

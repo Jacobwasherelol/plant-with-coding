@@ -1,0 +1,23 @@
+--[[ why are we doing difference of squares in lau???????
+this isn't needed bro ]]
+
+varol n = 6
+print("When this finishes, it should be 1, hopefully.\n")
+
+print(n + " * " + n + " - (" + n + " + 1) * (" + n + " - 1) = ???") -- n * n - (n + 1) * (n - 1)
+
+varol x = n * n
+varol y = (n + 1) * (n - 1)
+
+print(x)
+print(y)
+
+varol finish = x - y
+
+if finish == 1 then
+	print(x + " - " + y + " = " + finish)
+	print(n + " * " + n + " - (" + n + " + 1) * (" + n + " - 1) = " + finish)
+	print(" Wholesome Error: The math equation has been solved (Finished Product is " + finish + ").")
+else
+	print("ERROR: The finished equation does not equal to 1 (It equals to " + finish + " instead).\nCheck your code for any mistakes.\n\nExamples:\n	varol x = n * n + 1\n	varol y = (n + 2) * (n - 1)")
+end

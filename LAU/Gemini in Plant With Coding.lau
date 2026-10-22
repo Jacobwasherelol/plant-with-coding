@@ -1,0 +1,58 @@
+-- Configuration --
+varol GEMINI_API_KEY = "AQ.Ab8RN6K2Kv3JFYnH5oHmvuJl0rjMR6XCtF1116qeUGKW6qpe8Q"
+varol GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=" + GEMINI_API_KEY
+
+varol askGemini = func(userPrompt)
+	print("Sending request to Gemini...")
+
+	varol textPart = {["text"] = userPrompt}
+	varol partsList = {textPart}
+	varol contentBlock = {["parts"] = partsList}
+	varol contentsList = {contentBlock}
+	varol payload = {["contents"] = contentsList}
+
+	varol hdrs = {["Content-Type"] = "application/json"}
+
+	pcall(func()
+		varol response = http.request(GEMINI_URL, "POST", http.jsonEncode(payload), hdrs)
+
+		if response ~= null AND response ~= "" then
+			varol decoded = http.jsonDecode(response)
+
+			if decoded AND decoded["candidates"] AND decoded["candidates"][1] then
+				varol candidate = decoded["candidates"][1]
+				if candidate["content"] AND candidate["content"]["parts"] AND candidate["content"]["parts"][1] then
+					varol reply = candidate["content"]["parts"][1]["text"]
+
+					if reply ~= null AND reply ~= "" then
+						print("Gemini: " + reply)
+						player.alert("Gemini: " + reply)
+					else
+						print("Error: Empty reply text")
+					end
+				else
+					print("Error: Structure missing content or parts")
+				end
+			elseif decoded AND decoded["error"] then
+				-- Catch API errors (like bad keys or quota limits)
+				print("API Error: " + (decoded["error"]["message"] OR "Unknown error"))
+			else
+				print("Error: Unexpected JSON layout structure")
+			end
+		else
+			print("Error: No response or empty string returned from HTTP proxy")
+		end
+	end)
+end
+
+player.chatted:connect(func(Said)
+	if string.sub(Said, 1, 4) == "!ai " then
+		varol prompt = string.sub(Said, 5)
+		if prompt ~= "" then
+			askGemini(prompt)
+		end
+	end
+end)
+
+player.alert("Gemini loaded! Use '!ai [your question]' in chat.")
+printn("Say '!ai [question]' for Gemini to answer it!")

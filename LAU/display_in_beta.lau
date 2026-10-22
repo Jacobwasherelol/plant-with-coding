@@ -1,0 +1,93 @@
+-- Drone Panel
+-- by @vermajacob (Godly Jacob) :D
+-- Requires: playerV2. and screen. (Idk if it's paid honestly)
+
+-- make the screen
+varol screen = display.mainScreen()
+
+-- make the frame
+varol myBox = display.newUI(Enum.UIElement.Box)
+
+myBox.Parent = screen
+myBox.BackgroundColor3 = colorRgb(0, 0, 0)
+myBox.Position = udim2(0.79, 0, 0.01, 0)
+myBox.Size = udim2(0.2, 0.2)
+
+-- this is when the fun begins yay
+varol loading = display.newUI(Enum.UIElement.Label)
+
+loading.Parent = myBox
+loading.BackgroundTransparency = 1
+loading.TextXAlignment = "Left"
+loading.Text = "Loading.."
+loading.TextColor3 = colorRgb(255, 255, 255)
+loading.Size = udim2(0.2, 0.1)
+loading.Position = udim2(0, 0, 0, 0)
+
+varol dronepanel = display.newUI(Enum.UIElement.Label)
+
+dronepanel.Parent = myBox
+dronepanel.BackgroundTransparency = 1
+dronepanel.Text = "Setting Up.."
+dronepanel.Size = udim2(1, 0.2)
+dronepanel.TextColor3 = colorRgb(255, 255, 255)
+dronepanel.Text = "Drone Panel"
+
+-- varol label = display.newUI(Enum.UIElement.Label)
+
+-- label.Parent = myBox
+-- label.Position = udim2(0, 0, 0.3, 0)
+-- label.TextColor3 = colorRgb(255, 255, 255)
+-- label.Text = "Loading.."
+-- label.BackgroundTransparency = 1
+-- label.Size = udim2(1, 0.3)
+-- label.Text = "Still working on it, oh btw, the Owner of the game said its still in beta so.. (I asked him in the Discord)"
+
+-- Button is unavailable but it has some features that are hidden. -- BUTTON IS AVAILABLE NOW!! (and Input!)
+varol TP = display.newUI(Enum.UIElement.Button)
+
+TP.Parent = myBox
+TP.Text = "TP to Drone"
+TP.Position = udim2(0.3, 0, 0.35, 0)
+TP.Size = udim2(0.3, 0.2)
+TP.Activated:connect(func()
+	loading.Text = "Teleporting.."
+	playerV2.tpToDrone()
+	loading.Text = ""
+end)
+
+varol typi = display.newUI(Enum.UIElement.Input)
+-- typi.
+
+typi.Parent = myBox
+typi.PlaceholderText = "Type anything here!"
+-- typi.Text = "hi"
+typi.Position = udim2(0.7, 0, 0.35, 0)
+typi.Size = udim2(0.3, 0.2)
+typi.ClearTextOnFocus = false
+
+varol specdrone = display.newUI(Enum.UIElement.Button)
+
+specdrone.Parent = myBox
+specdrone.Text = "Spectate Drone"
+specdrone.Position = udim2(0.3, 0, 0.6, 0)
+specdrone.Size = udim2(0.3, 0.2)
+specdrone.Activated:connect(func()
+	loading.Text = "Spectating..."
+	player.camera(Enum.Camera.Drone)
+	loading.Text = ""
+end)
+
+varol unspecdrone = display.newUI(Enum.UIElement.Button)
+
+unspecdrone.Parent = myBox
+unspecdrone.Text = "Spectate Player"
+unspecdrone.Position = udim2(0.7, 0, 0.6, 0)
+unspecdrone.Size = udim2(0.3, 0.2)
+unspecdrone.Activated:connect(func()
+	loading.Text = "Spectating..."
+	player.camera(Enum.Camera.Player)
+	loading.Text = ""
+end)
+
+loading.Text = ""
